@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
 import sys
 
-sys.path.append("..")
+sys.path.insert(0, "..")
 
 from torch_tbhook import TensorBoardHook
 
@@ -174,8 +174,7 @@ def main():
 
     for epoch in tqdm(range(args.epochs), desc="Training"):
         for hook, module in hooks.values():
-            image = False
-            hook.register_forward(epoch, image=image, histogram=True)
+            hook.register_forward(epoch, image=True, histogram=True)
 
         train(model, device, optim, dl_train, criteria)
         acc_test = test(model, device, dl_test)

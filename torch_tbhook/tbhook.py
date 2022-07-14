@@ -50,7 +50,7 @@ class TensorBoardHook:
             output_ = output
         for idx, out_tensor in enumerate(output_):
             name = "%s.OUTPUT%d" % (self.name, idx)
-            if self.forward_image:
+            if self.forward_image and out_tensor.ndim == 4 and out_tensor.shape[1] == 3:
                 self.summary_writer.add_image(
                     name,
                     torchvision.utils.make_grid(out_tensor),
