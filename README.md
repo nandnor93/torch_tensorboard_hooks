@@ -19,7 +19,7 @@ pip install ./torch_tensorboard_hooks
 
 First, instantiate a model (an `nn.Module` subclass) as usual.
 
-```python:
+```Python:
 class MyModel(nn.Module):
     def __init__(self):
         super().__init__()
@@ -35,13 +35,15 @@ model = MyModel()
 
 Initialize a `SummaryWriter` instance.
 
-```python:
+```Python:
 writer = torch.utils.tensorboard.SummaryWriter()
 ```
 
 Then, obtain `TensorBoardHook` instances.
 
-```python:
+```Python:
+from torch_tbhook import TensorBoardHook
+
 hooks = {
     "conv1", TensorBoardHook(writer, "conv1", model.conv1)
     "relu1", TensorBoardHook(writer, "relu1", model.relu1)
@@ -51,7 +53,7 @@ hooks = {
 
 During the training epoch loop, kick the hook before the first batch flows into the model.
 
-```python:
+```Python:
 for epoch in range(EPOCH):
     model.train()
     optim.zero_grad()
