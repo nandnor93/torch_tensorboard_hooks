@@ -15,14 +15,13 @@ class TensorBoardHook:
         summary_writer: SummaryWriter,
         name: str,
         module: torch.nn.Module,
-        global_step:int = 0
     ):
         super().__init__()
         self.summary_writer = summary_writer
         self.name = name
         self.module = module
 
-        self.global_step = global_step
+        self.global_step = None
         self.forward_image = False
         self.forward_image_kwargs = None
         self.forward_histogram = False
