@@ -3,9 +3,9 @@ PyTorch utility classes for exporting intermediate tensors in a Module to Tensor
 
 ## Overview
 
-The utility class `TensorBoardHook` helps add a forward hook to an nn.Module instance so that the intermediate tensors during the forward path.  
+The utility class `TensorBoardHook` helps add a forward hook to an `nn.Module` instance so that the intermediate tensors during the forward path can be fetched and exported to TensorBoard.  
 The `nn.Module.register_forward_hook()` method allows us to add a "hook" that receives the in-situ inputs and outputs of the module.  
-`TensorBoardHook` registers itself as a hook to an `nn.Module` with proper names and arguments.
+`TensorBoardHook` registers itself as a hook to an `nn.Module` with proper names and arguments and removes itself when it completes the exporting process (i.e., only the first batch after `register_forward()` calling is treated).
 
 
 ## Installation
